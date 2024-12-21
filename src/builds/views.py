@@ -6,7 +6,6 @@ def index(request):
 
     Path.objects.create(name=request.path)
     values = Path.objects.all()
-    print(values, "values")
     context = { "visits" : values ,
                 "no_number_of_visit" : values.count() ,                
                 }
