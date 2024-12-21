@@ -10,5 +10,4 @@ def index(request):
                 "no_number_of_visit" : values.count() ,                
                 }
 
-    
     return render(request,"chome.html",context)

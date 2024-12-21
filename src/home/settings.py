@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +22,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$dpp-+rm-dmv_u6n)ge%t5e)pnpkf!d4dx4=niq=c&l1q!e&=6'
+SECRET_KEY = config("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config("DJANGO_DEBUG" , cast = bool)
+
 
 ALLOWED_HOSTS = [
     ".railway.app"
@@ -58,7 +61,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'home.urls'
 
-print("BASE_DIR = " , BASE_DIR / "home" / "templates")
+# print("BASE_DIR = " , BASE_DIR / "home" / "templates")
 
 
 TEMPLATES = [
