@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from decouple import config
-
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -92,6 +92,31 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+DATABASE_URL = config("DATABASE_URL", default  = None ,cast =str)
+DATABASE_AGE = config("DATABASE_AGE",default  = 30, cast = int)
+
+
+if DATABASE_URL is not None :
+    DATABASES = {
+    'default': dj_database_url.config(
+        default=DATABASE_URL,
+        conn_max_age=DATABASE_AGE,
+        
+    )
+}
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': config('POSTGRES_DB', default='mydatabase'),
+#         'USER': config('POSTGRES_USER', default='myuser'),
+#         'PASSWORD': config('POSTGRES_PASSWORD', default='mypassword'),
+#         'HOST': config('POSTGRES_HOST', default='localhost'),
+#         'PORT': config('POSTGRES_PORT', default='5432'),
+#     }
+# }
+
 
 
 # Password validation
