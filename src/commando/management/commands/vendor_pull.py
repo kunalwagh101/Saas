@@ -1,0 +1,34 @@
+from django.core.management.base import BaseCommand
+# from src.helper.downloder import extractor
+from pathlib import Path
+from django.conf import settings
+from helper.downloder import extractor
+class Command(BaseCommand): 
+
+    vendor_path = {
+
+        "flowbite_css.css" : "https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css",
+        "flowbite_js.js" : "https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js",
+    }
+
+    STATICFILES_URL = getattr(settings, "STATICFILES_URL")
+
+    def handle(self,*args,**kwargs) : 
+        complited = []
+        for name ,url in self.vendor_path.items():        
+            outpath = self.STATICFILES_URL/name
+            try:
+                result = extractor(url, outpath)
+                if result:
+                    complited.append(name)
+                    self.stdout.write(self.style.SUCCESS(f"Successfully downloaded {name}")) 
+            
+            except Exception as e:
+                self.stdout.write(self.style.ERROR(f"Failed to download {name}"))
+                raise ValueError(f"Error in downloading file: {e}")
+            
+        if set(complited) == self.vendor_path.keys():
+                self.stdout.write(self.style.SUCCESS("All files downloaded successfully"))
+
+        else: 
+                self.stdout.write(self.style.ERROR("Some files failed to download"))

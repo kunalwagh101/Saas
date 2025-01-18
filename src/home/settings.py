@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'builds',
+    "commando",
 ]
 
 MIDDLEWARE = [
@@ -154,6 +155,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_URL  = BASE_DIR/"staticfiles"
+VENDORS_URL = STATICFILES_URL/"vendors"
+
+STATICFILES_URL.mkdir(parents=True, exist_ok=True)
+
+STATICFILES_DIRS = [
+    STATICFILES_URL,
+]
+
+
+#root static_file 
+STATIC_ROOT = BASE_DIR / "local_cdn"
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

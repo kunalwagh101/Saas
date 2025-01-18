@@ -1,4 +1,9 @@
 /venv/
 __pycache__/
-__init__.py/
 
+/.env/
+local_cdn/
+
+src\staticfiles\vendors
+src\staticfiles/
+staticfiles/
