@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'builds',
-    "commando",
+    'commando',
 ]
 
 MIDDLEWARE = [
@@ -94,7 +94,7 @@ DATABASES = {
     }
 }
 
-DATABASE_URL = config("DATABASE_URL", default  = None ,cast =str)
+DATABASE_URL = config("DATABASE_URL", default  = None )
 DATABASE_AGE = config("DATABASE_AGE",default  = 30, cast = int)
 
 
