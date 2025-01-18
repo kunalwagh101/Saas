@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand
 # from src.helper.downloder import extractor
 from pathlib import Path
 from django.conf import settings
-from helper.downloder import extractor
+import helper
 class Command(BaseCommand): 
 
     vendor_path = {
@@ -21,10 +21,10 @@ class Command(BaseCommand):
             self.STATICFILES_URL.mkdir(parents=True, exist_ok=True)
             self.stdout.write(self.style.ERROR("VENDORS_URL not set in settings."))
             raise ValueError("STATICFILES_URL is not defined in settings.py")
-        for name ,url in self.vendor_path.items():        
+        for name, url in self.vendor_path.items():        
             outpath = self.STATICFILES_URL/name
             try:
-                result = extractor(url, outpath)
+                result = helper.extractor(url, outpath)
                 if result:
                     complited.append(name)
                     self.stdout.write(self.style.SUCCESS(f"Successfully downloaded {name}")) 
