@@ -51,7 +51,7 @@ RUN pip install -r /tmp/requirements.txt
 ARG DJANGO_SECRET_KEY
 ENV DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
 
-ARG DJANGO_DEBUG=0
+ARG DJANGO_DEBUG=1
 ENV DJANGO_DEBUG=${DJANGO_DEBUG}
 
 RUN python manage.py vendor_pull
