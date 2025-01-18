@@ -11,7 +11,7 @@ class Command(BaseCommand):
         "flowbite_js.js" : "https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js",
     }
 
-    STATICFILES_URL = getattr(settings, "STATICFILES_URL")
+    STATICFILES_URL = getattr(settings, "VENDORS_URL")
 
     def handle(self,*args,**kwargs) : 
         complited = []

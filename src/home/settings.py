@@ -159,10 +159,10 @@ STATIC_URL = 'static/'
 STATICFILES_URL  = BASE_DIR/"staticfiles"
 VENDORS_URL = STATICFILES_URL/"vendors"
 
-STATICFILES_URL.mkdir(parents=True, exist_ok=True)
+VENDORS_URL.mkdir(parents=True, exist_ok=True)
 
 STATICFILES_DIRS = [
-    STATICFILES_URL,
+    VENDORS_URL
 ]
 
 
