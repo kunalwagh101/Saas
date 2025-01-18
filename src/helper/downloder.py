@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 
 
-def extractor(url:str ,outpath:Path):
+def extractor(url:str, outpath:Path):
     if not isinstance(outpath, Path):
         raise ValueError(f"{outpath} must be a valid pathlib.Path object")
     
