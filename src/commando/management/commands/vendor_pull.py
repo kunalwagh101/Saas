@@ -21,6 +21,7 @@ class Command(BaseCommand):
             self.STATICFILES_URL.mkdir(parents=True, exist_ok=True)
             self.stdout.write(self.style.ERROR("VENDORS_URL not set in settings."))
             raise ValueError("STATICFILES_URL is not defined in settings.py")
+        
         for name, url in self.vendor_path.items():        
             outpath = self.STATICFILES_URL/name
             try:
