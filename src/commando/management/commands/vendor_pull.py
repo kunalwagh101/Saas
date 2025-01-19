@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand
 # from src.helper.downloder import extractor
 from pathlib import Path
 from django.conf import settings
-import helper
+from helper import extractor
 class Command(BaseCommand): 
 
     vendor_path = {
@@ -24,7 +24,7 @@ class Command(BaseCommand):
         for name, url in self.vendor_path.items():        
             outpath = self.STATICFILES_URL/name
             try:
-                result = helper.extractor(url, outpath)
+                result = extractor(url, outpath)
                 if result:
                     complited.append(name)
                     self.stdout.write(self.style.SUCCESS(f"Successfully downloaded {name}")) 
