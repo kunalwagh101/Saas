@@ -60,9 +60,14 @@ EMAIL_USE_SSL = config("EMAIL_USE_SSL", default = False, cast = bool)
 EMAIL_HOST_USER = config("EMAIL_HOST_USER", default = None)
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default = None)
 
+ADMINS_EMAIL_NAME = config("ADMINS_EMAIL_NAME", default = "Kunal Wagh")
+ADMINS_EMAIL_ADDRESS = config("ADMINS_EMAIL", default ="evilskull.wtf@gmail.com") 
 
-ADMINS = [("Kunal Wagh","evilskull.wtf@gmail.com")]
-MANAGER  = ADMINS 
+MANAGER = []
+ADMINS = []
+if all([EMAIL_HOST_USER, EMAIL_HOST_PASSWORD]):
+    ADMINS += [(f"{ADMINS_EMAIL_NAME}", f"{ADMINS_EMAIL_ADDRESS}")]
+    MANAGER  = ADMINS 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
